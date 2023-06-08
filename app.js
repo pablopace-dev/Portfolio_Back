@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: false }));   // Parse application/x-www-f
 app.use(express.json());                             // Parse application/json
 
 //Rutas
-app.use('/api/users', require('./routes/routerUsers'));         //Users
+app.use('/api/mail', require('./routers/routerMailer'));         //Mailer
 
 //404
 app.use((req, res) => { res.status(404).send({ msg: `Ruta no encontrada: ${req.url}` }); });
