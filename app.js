@@ -14,6 +14,17 @@ app.use(express.json());                             // Parse application/json
 //Rutas
 app.use('/api/mail', require('./routers/routerMailer'));         //Mailer
 
+
+//Awake
+app.use('/wakeup', (req, res) => {
+
+    res.status(200).json({
+        ok: true,
+        msg: `I'm awake (Portfolio - Back)`
+    });
+
+});
+
 //404
 app.use((req, res) => { res.status(404).send({ msg: `Ruta no encontrada: ${req.url}` }); });
 

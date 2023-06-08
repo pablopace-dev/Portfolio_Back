@@ -22,8 +22,8 @@ const sendEmail = async ({ body }, res) => {
             subject: `Mensaje desde Portfolio: ${body.name}`,
             html: `
                     <h1 style="color: #cf2c62; font-size: 45px; text-align: center">Pablo, tenés un nuevo mensaje!</h1>
-                    <h2 style="font-size: 35px">Datos:</h2>
-                    <p style="font-weight: normal; font-size: 25px"><b>Nombre: </b>${body.name}</p>
+                    <h2 style="font-size: 35px">Info:</h2>
+                    <p style="font-weight: normal; font-size: 25px"><b>De: </b>${body.name}</p>
                     <p style="font-weight: normal; font-size: 25px"><b>Email: </b>${body.email}</p>
                     <p style="font-weight: normal; font-size: 25px"><b>Fecha: </b>${new Date().toLocaleString('es-ES', { dateStyle: 'long', timeStyle: 'medium' })} hrs.</p>
                     <p style="font-weight: normal; font-size: 25px"><b>Mensaje: </b></p>                           

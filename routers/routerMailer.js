@@ -9,14 +9,4 @@ const {
 router.post('/', sendEmail);
 
 
-router.get('/wakeup', (req, res) => {
-
-    res.status(200).json({
-        ok: true,
-        msg: `I'm awake (Portfolio - Back)`
-    });
-
-});
-
-
 module.exports = router;
