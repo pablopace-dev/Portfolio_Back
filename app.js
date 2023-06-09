@@ -18,6 +18,8 @@ app.use('/api/mail', require('./routers/routerMailer'));         //Mailer
 //Awake
 app.use('/wakeup', (req, res) => {
 
+    console.log(`I'm awake (Portfolio - Back)`);
+
     res.status(200).json({
         ok: true,
         msg: `I'm awake (Portfolio - Back)`
