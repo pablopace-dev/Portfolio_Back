@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 require('dotenv').config();
+const { connect } = require('./helpers/dbConnect');
+
 
 const port = process.env.PORT;
 
@@ -13,7 +15,10 @@ app.use(express.json());                             // Parse application/json
 
 //Rutas
 app.use('/api/mail', require('./routers/routerMailer'));         //Mailer
+app.use('/api/visit', require('./routers/routerVisits'));         //Visits
 
+//Conexión
+connect();
 
 //Awake
 app.use('/wakeup', (req, res) => {
