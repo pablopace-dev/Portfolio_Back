@@ -1,8 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-const { createVisit } = require('../controllers/controllerVisit');
+const {
+    createVisit,
+    getVisits } = require('../controllers/controllerVisit');
 
+
+router.get('/', getVisits);
 
 router.post('/', createVisit);
 
