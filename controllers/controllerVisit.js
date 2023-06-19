@@ -64,14 +64,13 @@ body: name, ip y page.
 const createVisit = async (req, res) => {
 
     try {
-        req.body.ip = req.ip;
-
+        
         const visit = new Visit(req.body);
         await visit.save();
 
         return res.status(201).json({
             ok: true,
-            msg: 'Visita creada con éxito'
+            msg: 'Visita registrada con éxito'
         });
 
     } catch (e) {

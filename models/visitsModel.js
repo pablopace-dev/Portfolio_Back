@@ -14,20 +14,48 @@ const { Schema, model } = require('mongoose');
  */
 const VisitSchema = new Schema({
 
-    name: {
-        type: String,
-        required: true,
+    city: {
+        type: String,        
+        trim: true
+    },
+
+    region: {
+        type: String,        
+        trim: true
+    },
+
+    country_name: {
+        type: String,        
         trim: true
     },
 
     ip: {
-        type: String,
-        required: true,
+        type: String,        
         trim: true
     },
 
-    page: {
+    network: {
+        type: String,        
+        trim: true
+    },
+
+    postal: {
         type: String,
+        trim: true
+    },
+
+    org: {
+        type: String,
+        trim: true
+    },
+
+    latitude: {        
+        type: Number,
+        trim: true
+    },
+
+    longitude: {        
+        type: Number,
         trim: true
     },
 
