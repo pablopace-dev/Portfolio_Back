@@ -15,27 +15,27 @@ const { Schema, model } = require('mongoose');
 const VisitSchema = new Schema({
 
     city: {
-        type: String,        
+        type: String,
         trim: true
     },
 
     region: {
-        type: String,        
+        type: String,
         trim: true
     },
 
     country_name: {
-        type: String,        
+        type: String,
         trim: true
     },
 
     ip: {
-        type: String,        
+        type: String,
         trim: true
     },
 
     network: {
-        type: String,        
+        type: String,
         trim: true
     },
 
@@ -49,12 +49,12 @@ const VisitSchema = new Schema({
         trim: true
     },
 
-    latitude: {        
+    latitude: {
         type: Number,
         trim: true
     },
 
-    longitude: {        
+    longitude: {
         type: Number,
         trim: true
     },
@@ -62,6 +62,10 @@ const VisitSchema = new Schema({
     date: {
         type: Date,
         default: Date.now
+    },
+
+    event: {
+        type: String
     }
 
 });
