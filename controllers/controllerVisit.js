@@ -1,4 +1,5 @@
 const Visit = require('../models/visitsModel');
+const { sendError } = require('./controllerMailer');
 
 /** 
  * @author Pablo
@@ -7,6 +8,9 @@ const Visit = require('../models/visitsModel');
  */
 
 
+const checkDates = (a, b) => {
+    return new Date(b.date) - new Date(a.date);
+}
 
 /**
 * Devuelve todos las visitas.
@@ -33,8 +37,9 @@ const getVisits = async (req, res) => {
         return res.status(200).json({
             ok: true,
             msg: 'Visitas encontradas con éxito',
-            data: visits,
-            length: visits.length
+            length: visits.length,
+            last: visits[visits.length - 1],
+            data: visits.sort(checkDates).slice(0, 5)
         });
 
     } catch (e) {
@@ -52,7 +57,7 @@ const getVisits = async (req, res) => {
 
 
 /**
-* Crea un usuario.
+* Crea una visita nueva.
 * @method createVisit
 * @async
 * @param {Object} req Es el requerimiento que proviene de las rutas, necesita en el
@@ -64,7 +69,7 @@ body: name, ip y page.
 const createVisit = async (req, res) => {
 
     try {
-        
+
         const visit = new Visit(req.body);
         await visit.save();
 
@@ -75,6 +80,7 @@ const createVisit = async (req, res) => {
 
     } catch (e) {
         console.log('createVisit error:', e);
+        sendError(e);
 
         return res.status(500).json({
             ok: false,
