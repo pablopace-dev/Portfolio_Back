@@ -66,6 +66,10 @@ const VisitSchema = new Schema({
 
     event: {
         type: String
+    },
+
+    devMode: {
+        type: Boolean
     }
 
 });
