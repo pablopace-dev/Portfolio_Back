@@ -70,7 +70,12 @@ const VisitSchema = new Schema({
 
     devMode: {
         type: Boolean
+    },
+
+    lang: {
+        type: String
     }
+
 
 });
 
