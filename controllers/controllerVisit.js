@@ -8,12 +8,24 @@ const { sendError } = require('./controllerMailer');
  */
 
 
+/**
+ * Función para ordenar un array por fecha
+ * @method checkDates
+ * @param {Object} a 1er elemento a comparar
+ * @param {Object} b 2do elemento a comparar
+ * @returns {Array} El array ordenado por la fecha
+ */
 const checkDates = (a, b) => {
     return new Date(b.date) - new Date(a.date);
 };
 
 
-
+/**
+ * Esta función recibe un objeto con todas las visitas registradas y lo reordena agrupándolo
+ * por fecha y luego por IPs
+ * @param {Object} dataVisits El objeto que contiene todas las visitas registradas
+ * @returns {Object} Un nuevo objeto reordenado
+ */
 const processData = dataVisits => {
 
     const newVisits = [];
@@ -21,7 +33,6 @@ const processData = dataVisits => {
     dataVisits.forEach(vis => {
 
         const date = new Date(vis.date).toLocaleString('es-ES', { dateStyle: 'long' });
-        // console.log('date', date);
 
         const oldInd = newVisits.findIndex(el => el.date === date);
         let newInd = -1, ipInd = -1;
@@ -29,7 +40,6 @@ const processData = dataVisits => {
         if (oldInd != -1) {
 
             ipInd = newVisits[oldInd].ips.findIndex(el => el.ip === vis.ip);
-            // console.log('ipInd', ipInd, vis.date);
 
             if (ipInd != -1)
                 newVisits[oldInd].ips[ipInd].logs.push(vis.city ?
@@ -82,7 +92,6 @@ const processData = dataVisits => {
 
         const index = oldInd === -1 ? newInd : oldInd;
         const ipIndex = ipInd === -1 ? newVisits[index].ips.length - 1 : ipInd;
-        // console.log('index', index, 'ipIndex', ipIndex);
 
         if (vis.org && !newVisits[index].ips[ipIndex].city) {
 
@@ -93,15 +102,12 @@ const processData = dataVisits => {
                 city, region, country_name, ip, org, postal, latitude, longitude
             };
 
-            // console.log('newV', newVisits);
         }
-
-
     });
 
-    // console.log('nV', newVisits);
     return newVisits;
 };
+
 
 /**
 * Devuelve todos las visitas.
@@ -133,7 +139,6 @@ const getVisits = async (req, res) => {
             length: visits.length,
             last: visits[0],
             data: newVisits
-            // data: visits.sort(checkDates).slice(0, 5)
         });
 
     } catch (e) {
