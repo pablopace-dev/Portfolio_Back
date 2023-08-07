@@ -191,7 +191,47 @@ const createVisit = async (req, res) => {
 };
 
 
+/**
+ * Recibe una lista de _ids de visitas para eliminarlos de la base de datos.
+ * @async
+ * @param {Object} body Proviene del requerimiento de la ruta, debe contener un array (list) con la lista de
+ * _ids a eliminar.
+ * @param {*} res Es la respuesta de la ruta
+ * @returns {json} Retorna Ok y msg
+ * @throws {Error}
+ */
+const deleteVisits = async ({ body }, res) => {
+
+    try {
+
+        const list = body.list || [];
+
+        list.forEach(async id => {
+
+            await Visit.findByIdAndDelete(id);            
+        });
+
+        return res.status(201).json({
+            ok: true,
+            msg: 'Visitas eliminadas con éxito'
+        });
+
+    } catch (e) {
+        console.log('deleteVisits error:', e);
+        sendError(e);
+
+        return res.status(500).json({
+            ok: false,
+            msg: 'deleteVisits: Ha habido un fallo al borrar las visitas.',
+            error: e
+        });
+
+    };
+};
+
+
 module.exports = {
     createVisit,
-    getVisits
+    getVisits,
+    deleteVisits
 }

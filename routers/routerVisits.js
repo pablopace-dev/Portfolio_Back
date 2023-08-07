@@ -3,12 +3,15 @@ const router = express.Router();
 
 const {
     createVisit,
-    getVisits } = require('../controllers/controllerVisit');
+    getVisits,
+    deleteVisits } = require('../controllers/controllerVisit');
 
 
 router.get('/', getVisits);
 
 router.post('/', createVisit);
+
+router.delete('/', deleteVisits)
 
 
 module.exports = router;
