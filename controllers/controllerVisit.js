@@ -45,13 +45,15 @@ const processData = dataVisits => {
                 newVisits[oldInd].ips[ipInd].logs.push(vis.city ?
                     {
                         event: 'Visit',
-                        date: vis.date
+                        date: vis.date,
+                        _id: vis._id
                     } :
                     {
                         event: vis.event,
                         devMode: vis.devMode,
                         lang: vis.lang,
-                        date: vis.date
+                        date: vis.date,
+                        _id: vis._id
                     });
 
             else
@@ -59,13 +61,15 @@ const processData = dataVisits => {
                     ip: vis.ip, logs: [vis.city ?
                         {
                             event: 'Visit',
-                            date: vis.date
+                            date: vis.date,
+                            _id: vis._id
                         } :
                         {
                             event: vis.event,
                             devMode: vis.devMode,
                             lang: vis.lang,
-                            date: vis.date
+                            date: vis.date,
+                            _id: vis._id
                         }]
                 });
 
@@ -78,13 +82,15 @@ const processData = dataVisits => {
             newVisits[newInd].ips[newVisits[newInd].ips.length - 1].logs = [(vis.city ?
                 {
                     event: 'Visit',
-                    date: vis.date
+                    date: vis.date,
+                    _id: vis._id
                 } :
                 {
                     event: vis.event,
                     devMode: vis.devMode,
                     lang: vis.lang,
-                    date: vis.date
+                    date: vis.date,
+                    _id: vis._id
                 })
             ];
 
@@ -208,7 +214,7 @@ const deleteVisits = async ({ body }, res) => {
 
         list.forEach(async id => {
 
-            await Visit.findByIdAndDelete(id);            
+            await Visit.findByIdAndDelete(id);
         });
 
         return res.status(201).json({
